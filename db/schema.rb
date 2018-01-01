@@ -22,13 +22,4 @@ ActiveRecord::Schema.define(version: 20180101030159) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "invoicexes", force: :cascade do |t|
-    t.string "item"
-    t.text "details"
-    t.money "price", scale: 2
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
 end

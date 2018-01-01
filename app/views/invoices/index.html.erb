@@ -1,0 +1,21 @@
+
+<h1>Listing invoices</h1>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+ 
+  <% @invoices.each do |invoice| %>
+  
+    <tr>
+      <td><%= invoice.item %></td>
+      <td><%= invoice.details %></td>
+      <td><%= invoice.price %></td>
+      <td><%= link_to 'Show', invoice_path(invoice) %></td>
+    </tr>
+  <% end %>
+</table>
+ 
+
+<%= link_to 'New invoice', new_invoice_path %>
