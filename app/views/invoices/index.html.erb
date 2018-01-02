@@ -13,6 +13,7 @@
       <td><%= invoice.details %></td>
       <td><%= invoice.price %></td>
       <td><%= link_to 'Show', invoice_path(invoice) %></td>
+      <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
     </tr>
   <% end %>
 </table>

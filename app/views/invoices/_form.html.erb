@@ -1,0 +1,35 @@
+<%= form_with model: @invoice do |form| %>
+
+<% if @invoice.errors.any? %>
+<div id="error_explanation">
+  <h2>
+    <%= pluralize(@invoice.errors.count, "error") %> prohibited
+    this invoice from being saved:
+  </h2>
+  <ul>
+    <% @invoice.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<p>
+  <%= form.label :item %><br>
+  <%= form.text_field :item %>
+</p>
+
+<p>
+  <%= form.label :details %><br>
+  <%= form.text_area :details %>
+</p>
+
+<p>
+  <%= form.label :price %><br>
+  <%= form.text_area :price %>
+</p>
+
+<p>
+  <%= form.submit %>
+</p>
+<% end %>
+

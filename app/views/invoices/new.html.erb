@@ -1,23 +1,4 @@
 <h1>hello there, looking for new invoice </h1>
+<%= render 'form' %>
 
-<%= form_with scope: :invoice, url: invoices_path, local: true do |form| %>
-<p>
-  <%= form.label :item %><br>
-  <%= form.text_field :item %>
-</p>
-
-<p>
-  <%= form.label :details %><br>
-  <%= form.text_area :details %>
-</p>
-
-<p>
-  <%= form.label :price %><br>
-  <%= form.text_area :price %>
-</p>
-
-<p>
-  <%= form.submit %>
-</p>
-<% end %>
 <%= link_to 'Back', invoices_path %>

@@ -9,3 +9,15 @@ services:
       - 5432:5432
     volumes:
       - ./data/postgresql:/var/lib/postgresql
+
+
+  app:
+    build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - /opt/thapakzi/share/rubygems/:/bundle_path
+      - .:/app
+    depends_on:
+      - db
+    
