@@ -9,7 +9,7 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   password: <%= ENV.fetch("POSTGRES_PASSWORD", 'd0ck3r_C0mPoS3')  %>
   username: <%= ENV.fetch("POSTGRES_USERNAME", 'kicka$$dev') %>
-  host: <%= ENV.fetch("POSTGRES_HOST") { 'localhost' } %>
+  host: <%= ENV.fetch("POSTGRES_HOST") { 'db' } %>
   port: <%= ENV.fetch("POSTGRES_PORT") { '5432' } %>
   database: <%= ENV.fetch("POSTGRES_DB") { 'invoicer' } %>
   timeout: 5000
