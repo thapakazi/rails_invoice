@@ -12,7 +12,7 @@ services:
     build: .
     command: scripts/main.sh
     volumes:
-      - /opt/thapakzi/share/rubygems/:/bundle_path
+      - /opt/thapakazi/share/rubygems/:/bundle_path
       - $PWD:/app
     depends_on:
       - db
