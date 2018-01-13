@@ -10,6 +10,14 @@ PUMA_SERVER_ID=/tmp/pid_puma.*
 
 # starting the server
 bundle exec rails db:migrate
-#bundle exec rails s -b 0.0.0.0 -p 3000
-bundle exec puma --pidfile /tmp/pid_puma_$(hostname).pid
+
+#boot the rails server
+bundle exec rails s -b 0.0.0.0 -p 3000 -P /tmp/server.pid
+
+# or boot puma if needby ;)
+# bundle exec puma \
+#        --pidfile /tmp/pid_puma_$(hostname).pid \
+#        --redirect-stdout  /dev/stdout \
+#        --redirect-stderr /dev/stderr \
+#        --redirect-append
 

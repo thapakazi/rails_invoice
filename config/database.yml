@@ -7,11 +7,11 @@
 default: &default
   adapter: postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  password: <%= ENV.fetch("POSTGRES_PASSWORD", 'd0ck3r_C0mPoS3')  %>
-  username: <%= ENV.fetch("POSTGRES_USERNAME", 'kicka$$dev') %>
-  host: <%= ENV.fetch("POSTGRES_HOST") { 'db' } %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD", 'default_password')  %>
+  username: <%= ENV.fetch("POSTGRES_USER", 'default_user') %>
+  host: <%= ENV.fetch("POSTGRES_HOST") { 'default_db' } %>
   port: <%= ENV.fetch("POSTGRES_PORT") { '5432' } %>
-  database: <%= ENV.fetch("POSTGRES_DB") { 'invoicer' } %>
+  database: <%= ENV.fetch("POSTGRES_DB") { 'default_db' } %>
   timeout: 5000
 
 development:
