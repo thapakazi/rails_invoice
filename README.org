@@ -1,0 +1,23 @@
+#+TITLE: README
+
+* About
+  this is my test app learning to docker and to rails...
+  some basic details:
+
+  - The app simply does basic Create,Rread,Update +Delete+
+  - uses env vars on database.yml(lol, that's not new either)
+  - zero test cases :(
+
+ BUT
+  - is container friendly
+    #+BEGIN_SRC bash
+    docker-compose up -d && docker-compose logs -f
+    #+END_SRC
+  - to use in pwd
+    #+BEGIN_SRC bash
+    git clone https://github.com/thapakazi/rails_invoice
+    cd rails_invoice
+    docker-compose up -d
+    docker-compose logs -f
+    #+END_SRC
+  

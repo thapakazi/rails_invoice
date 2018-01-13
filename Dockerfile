@@ -1,5 +1,5 @@
 FROM ruby:2.5.0-alpine
-LABEL maintainer thapakazi
+LABEL maintainer="thapakazi"
 
 COPY .docker/apk_mirrors /etc/apk/repositories
 RUN apk update \
