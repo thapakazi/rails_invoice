@@ -22,7 +22,7 @@ services:
     volumes:
       - .docker/nginx/app.conf:/etc/nginx/conf.d/default.conf
     ports:
-      - 80:80
+      - 80:80 #sudo setcap cap_net_bind_service=+ep `which docker-compose`
     depends_on:
       - app
       

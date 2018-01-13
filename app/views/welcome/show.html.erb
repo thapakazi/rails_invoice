@@ -2,3 +2,7 @@
 <%=link_to 'Invoice',controller: 'invoices'%>
 </br>
 hello there from <strong><%=`hostname && hostname -i`%></strong>
+this page is reloaded every 3sec...just for fun ;)
+<script>
+  setTimeout(function(){ location.reload(); }, 3000);
+ </script>

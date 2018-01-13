@@ -5,9 +5,11 @@ bundle check || bundle install
 bundle exec rails about
 
 #little bit of cleanup
-PUMA_SERVER_ID=tmp/pids/server.pid
+PUMA_SERVER_ID=/tmp/pid_puma.*
 [ -f $PUMA_SERVER_ID ] && rm -rf $PUMA_SERVER_ID
 
 # starting the server
 bundle exec rails db:migrate
-bundle exec rails s -b 0.0.0.0 -p 3000
+#bundle exec rails s -b 0.0.0.0 -p 3000
+bundle exec puma --pidfile /tmp/pid_puma_$(hostname).pid
+
