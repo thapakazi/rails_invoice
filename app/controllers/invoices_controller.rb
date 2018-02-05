@@ -1,37 +1,47 @@
 class InvoicesController < ApplicationController
-  def index
-    @invoices = Invoice.all
-  end
-  def show
+
+  before_action :find_invoice, only: [:show, :edit, :destroy, :update]
+  def  find_invoice
     @invoice = Invoice.find(params[:id])
+  end
+
+  def index
+    @invoices = Invoice.all.order("created_at DESC")
+  end
+
+  def show
   end
   
   def new
     @invoice = Invoice.new
   end
-  def edit
-    @invoice = Invoice.find(params[:id])
-  end
-  def create
-    # render plain: params[:invoice].inspect
 
+  def edit
+  end
+
+  def create
     @invoice = Invoice.new(invoice_params)
     if @invoice.save
-      redirect_to @invoice
+      redirect_to invoices_path
     else
       render 'new'
     end
     # render plain: params[:invoice].inspect
   end
+
   def update
-    @invoice = Invoice.find(params[:id])
- 
     if @invoice.update(invoice_params)
       redirect_to @invoice
     else
       render 'edit'
     end
   end
+
+  def destroy
+    @invoice.delete
+    redirect_to invoices_path
+  end
+
   private
   def invoice_params
     params.require(:invoice).permit(:item,:details,:price)

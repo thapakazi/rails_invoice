@@ -1,4 +1,6 @@
 <h1>hello there, editing the invoice? </h1>
 
 <%= render 'form' %>
+
 <%= link_to 'Back', invoices_path %>
+<%= link_to 'Delete', invoice_path(@invoice), method: :delete, data: {confirm: "You sure you wanna delete this ?"} %>

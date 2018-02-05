@@ -1,0 +1,11 @@
+* Two tables:
+  - Invoice: date,items, price
+  - User: user
+
+* Interface:
+  - form
+  - view
+
+* Requirements:
+  - end of month summary
+  - email summary

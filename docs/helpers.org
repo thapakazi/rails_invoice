@@ -1,0 +1,161 @@
+* useful commands
+  1. list all the runing containers
+     #+BEGIN_SRC bash :results drawer
+     docker-compose ps
+     #+END_SRC
+
+     #+RESULTS:
+     :RESULTS:
+		Name                         Command              State         Ports       
+     ---------------------------------------------------------------------------------------
+     e9b9d25771d4_invoice_app_1   scripts/main.sh                 Up      3000/tcp          
+     invoice_db_1                 docker-entrypoint.sh postgres   Up      5432/tcp          
+     invoice_nginx_1              nginx -g daemon off;            Up      0.0.0.0:80->80/tcp
+     :END:
+
+  2. start your containers
+     #+BEGIN_SRC bash
+     cd ..
+     docker-compose up -d
+     #+END_SRC
+
+  3. check on the logs, follow them
+     #+BEGIN_SRC bash :results drawer
+     docker-compose logs --no-color
+     #+END_SRC
+
+     #+RESULTS:
+     :RESULTS:
+     Attaching to invoice_app_1, invoice_nginx_1, invoice_db_1
+     app_1    | The Gemfile's dependencies are satisfied
+     app_1    | About your application's environment
+     app_1    | Rails version             5.1.4
+     app_1    | Ruby version              2.5.0-p0 (x86_64-linux-musl)
+     app_1    | RubyGems version          2.7.4
+     app_1    | Rack version              2.0.3
+     app_1    | JavaScript Runtime        Node.js (V8)
+     app_1    | Middleware                Rack::Sendfile, ActionDispatch::Static, ActionDispatch::Executor, ActiveSupport::Cache::Strategy::LocalCache::Middleware, Rack::Runtime, Rack::MethodOverride, ActionDispatch::RequestId, ActionDispatch::RemoteIp, Sprockets::Rails::QuietAssets, Rails::Rack::Logger, ActionDispatch::ShowExceptions, WebConsole::Middleware, ActionDispatch::DebugExceptions, ActionDispatch::Reloader, ActionDispatch::Callbacks, ActiveRecord::Migration::CheckPending, ActionDispatch::Cookies, ActionDispatch::Session::CookieStore, ActionDispatch::Flash, Rack::Head, Rack::ConditionalGet, Rack::ETag
+     app_1    | Application root          /app
+     app_1    | Environment               development
+     app_1    | Database adapter          postgresql
+     app_1    | Database schema version   20180101030159
+     app_1    | => Booting Puma
+     app_1    | => Rails 5.1.4 application starting in development 
+     app_1    | => Run `rails server -h` for more startup options
+     app_1    | Puma starting in single mode...
+     app_1    | * Version 3.11.0 (ruby 2.5.0-p0), codename: Love Song
+     app_1    | * Min threads: 5, max threads: 5
+     app_1    | * Environment: development
+     app_1    | * Listening on tcp://0.0.0.0:3000
+     app_1    | Use Ctrl-C to stop
+     app_1    | Started GET "/" for 172.28.0.4 at 2018-01-14 05:26:21 +0000
+     app_1    | Cannot render console from 172.28.0.4! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+     app_1    |   [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+     app_1    | Processing by WelcomeController#show as */*
+     app_1    |   Rendering welcome/show.html.erb within layouts/application
+     app_1    |   Rendered welcome/show.html.erb within layouts/application (6.9ms)
+     app_1    | Completed 200 OK in 209ms (Views: 197.2ms | ActiveRecord: 0.0ms)
+     app_1    | 
+     app_1    | 
+     db_1     | The files belonging to this database system will be owned by user "postgres".
+     db_1     | This user must also own the server process.
+     db_1     | 
+     db_1     | The database cluster will be initialized with locale "en_US.utf8".
+     db_1     | The default database encoding has accordingly been set to "UTF8".
+     db_1     | The default text search configuration will be set to "english".
+     db_1     | 
+     db_1     | Data page checksums are disabled.
+     db_1     | 
+     db_1     | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+     db_1     | creating subdirectories ... ok
+     db_1     | selecting default max_connections ... 100
+     db_1     | selecting default shared_buffers ... 128MB
+     db_1     | selecting dynamic shared memory implementation ... posix
+     db_1     | creating configuration files ... ok
+     db_1     | running bootstrap script ... ok
+     db_1     | sh: locale: not found
+     db_1     | 2018-01-13 07:34:29.796 UTC [29] WARNING:  no usable system locales were found
+     db_1     | performing post-bootstrap initialization ... ok
+     db_1     | syncing data to disk ... ok
+     db_1     | 
+     db_1     | Success. You can now start the database server using:
+     db_1     | 
+     db_1     |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+     db_1     | 
+     db_1     | 
+     db_1     | WARNING: enabling "trust" authentication for local connections
+     db_1     | You can change this by editing pg_hba.conf or using the option -A, or
+     db_1     | --auth-local and --auth-host, the next time you run initdb.
+     db_1     | waiting for server to start....2018-01-13 07:34:34.915 UTC [34] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+     db_1     | 2018-01-13 07:34:34.915 UTC [34] LOG:  could not bind IPv6 address "::1": Address not available
+     db_1     | 2018-01-13 07:34:34.915 UTC [34] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+     db_1     | 2018-01-13 07:34:35.248 UTC [34] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+     db_1     | 2018-01-13 07:34:35.368 UTC [35] LOG:  database system was shut down at 2018-01-13 07:34:30 UTC
+     db_1     | 2018-01-13 07:34:35.398 UTC [34] LOG:  database system is ready to accept connections
+     db_1     |  done
+     db_1     | server started
+     db_1     | CREATE DATABASE
+     db_1     | 
+     db_1     | CREATE ROLE
+     db_1     | 
+     db_1     | 
+     db_1     | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+     db_1     | 
+     db_1     | waiting for server to shut down....2018-01-13 07:34:36.982 UTC [34] LOG:  received fast shutdown request
+     db_1     | 2018-01-13 07:34:37.013 UTC [34] LOG:  aborting any active transactions
+     db_1     | 2018-01-13 07:34:37.016 UTC [34] LOG:  worker process: logical replication launcher (PID 41) exited with exit code 1
+     db_1     | 2018-01-13 07:34:37.016 UTC [36] LOG:  shutting down
+     db_1     | 2018-01-13 07:34:37.380 UTC [34] LOG:  database system is shut down
+     db_1     |  done
+     db_1     | server stopped
+     db_1     | 
+     db_1     | PostgreSQL init process complete; ready for start up.
+     db_1     | 
+     db_1     | 2018-01-13 07:34:37.485 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+     db_1     | 2018-01-13 07:34:37.485 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+     db_1     | 2018-01-13 07:34:38.007 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+     db_1     | 2018-01-13 07:34:38.126 UTC [47] LOG:  database system was shut down at 2018-01-13 07:34:37 UTC
+     db_1     | 2018-01-13 07:34:38.161 UTC [1] LOG:  database system is ready to accept connections
+     db_1     | 2018-01-13 07:34:39.938 UTC [54] FATAL:  password authentication failed for user "default_user"
+     db_1     | 2018-01-13 07:34:39.938 UTC [54] DETAIL:  Role "default_user" does not exist.
+     db_1     | 	Connection matched pg_hba.conf line 95: "host all all all md5"
+     db_1     | 2018-01-13 07:34:41.837 UTC [55] FATAL:  password authentication failed for user "default_user"
+     db_1     | 2018-01-13 07:34:41.837 UTC [55] DETAIL:  Role "default_user" does not exist.
+     db_1     | 	Connection matched pg_hba.conf line 95: "host all all all md5"
+     db_1     | 2018-01-13 16:50:41.008 UTC [1] LOG:  received smart shutdown request
+     db_1     | 2018-01-13 16:50:41.128 UTC [1] LOG:  worker process: logical replication launcher (PID 53) exited with exit code 1
+     db_1     | 2018-01-14 05:18:59.473 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+     db_1     | 2018-01-14 05:18:59.473 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+     db_1     | 2018-01-14 05:18:59.804 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+     db_1     | 2018-01-14 05:18:59.996 UTC [19] LOG:  database system was interrupted; last known up at 2018-01-13 07:39:45 UTC
+     db_1     | 2018-01-14 05:19:01.131 UTC [19] LOG:  database system was not properly shut down; automatic recovery in progress
+     db_1     | 2018-01-14 05:19:01.193 UTC [19] LOG:  redo starts at 0/15F1BB0
+     db_1     | 2018-01-14 05:19:01.194 UTC [19] LOG:  invalid record length at 0/15F1C90: wanted 24, got 0
+     db_1     | 2018-01-14 05:19:01.194 UTC [19] LOG:  redo done at 0/15F1C58
+     db_1     | 2018-01-14 05:19:01.879 UTC [1] LOG:  database system is ready to accept connections
+     db_1     | 2018-01-14 05:20:28.745 UTC [1] LOG:  received smart shutdown request
+     db_1     | 2018-01-14 05:20:28.765 UTC [1] LOG:  worker process: logical replication launcher (PID 25) exited with exit code 1
+     db_1     | 2018-01-14 05:20:28.765 UTC [20] LOG:  shutting down
+     db_1     | 2018-01-14 05:20:28.869 UTC [1] LOG:  database system is shut down
+     db_1     | 2018-01-14 05:20:57.132 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+     db_1     | 2018-01-14 05:20:57.132 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+     db_1     | 2018-01-14 05:20:57.757 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+     db_1     | 2018-01-14 05:20:57.925 UTC [19] LOG:  database system was shut down at 2018-01-14 05:20:28 UTC
+     db_1     | 2018-01-14 05:20:58.019 UTC [1] LOG:  database system is ready to accept connections
+     :END:
+
+  4. execute a command/rspec inside a app
+     #+BEGIN_SRC bash :results drawer
+     docker-compose exec app bin/rails c
+     #+END_SRC
+
+  5. Behind the scene, env vars
+
+     1. how is nginx finding the app ?
+	#+BEGIN_SRC bash
+	dig app +short
+	#+END_SRC
+	
+     2. might be wondering how my database.yml looks like
+         [[../config/database.yml]]
+  

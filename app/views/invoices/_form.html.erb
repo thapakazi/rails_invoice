@@ -1,4 +1,4 @@
-<%= form_with model: @invoice, local: true do |form| %>
+<%= simple_form_for @invoice  do |form| %>
 
 <% if @invoice.errors.any? %>
 <div id="error_explanation">
@@ -14,22 +14,18 @@
 </div>
 <% end %>
 <p>
-  <%= form.label :item %><br>
-  <%= form.text_field :item %>
+  <%= form.input :item, label: "Item"%>
 </p>
 
 <p>
-  <%= form.label :details %><br>
-  <%= form.text_area :details %>
+  <%= form.input :details, label: "Details"%>
 </p>
 
 <p>
-  <%= form.label :price %><br>
-  <%= form.text_area :price %>
+  <%= form.input :price, as: :currency, label: "Cost" %>
 </p>
 
 <p>
-  <%= form.submit %>
+  <%= form.button :submit %>
 </p>
 <% end %>
-
