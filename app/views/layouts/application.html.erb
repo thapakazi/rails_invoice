@@ -9,6 +9,23 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <div id="user_header">
+	<% if current_user %>
+	Logged In as <%= current_user.email %>.
+	<%=link_to "SignOut", logout_path %>
+	<% else %>
+	<%= link_to "SingUp",signup_path %> or
+	<%= link_to "SingIn",login_path %> or
+	<%end%>
+      </div>
+    </div>
+
+    <% flash.each do |name,msg|%>
+    <%= content_tag :div, msg, id: "flash_#{name}" %>
+    <%end%>
+    <div id="main-content">
+        <%= yield %>
+    </div>
   </body>
 </html>

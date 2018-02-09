@@ -1,12 +1,25 @@
 <br/>
 <%= link_to 'नाया खाता/New invoice', new_invoice_path %>
-<% @invoices.each do |invoice| %>
-  <h2><%= link_to invoice.item, invoice %></h2>
-  <h4><%= invoice.details %></h4>
-  <%= invoice.price %>
-  <p>
-   <%= link_to 'Edit', edit_invoice_path(invoice) %>
-   <%= link_to 'Delete', invoice_path(invoice), method: :delete, data: {confirm: "You sure you wanna delete this ?"} %> </p>
+<table class="table table-striped">
+    <thead>
+        <th>Item</th>
+        <th>Details</th>
+        <th>Price</th>
+        <th>Actions</th>
+    </thead>
+    <tbody>
+        <% @invoices.each do |invoice| %>
+            <tr>
+                <td><%= link_to invoice.item, invoice %></td>
+                <td><%= invoice.details %></td>
+                <td><%= invoice.price %></td>
+                <td>
+                   <%= link_to 'Edit', edit_invoice_path(invoice) %>
+                   <%= link_to 'Delete', invoice_path(invoice), method: :delete, data: {confirm: "You sure you wanna delete this ?"} %> </p>
+                </td>
+            </tr>
+        <% end %>
 
-<%end%>
-  
+    </tbody>
+</table>
+

@@ -1,5 +1,5 @@
 class InvoicesController < ApplicationController
-
+  before_action :authorize, only: [:edit,:update,:destroy]
   before_action :find_invoice, only: [:show, :edit, :destroy, :update]
   def  find_invoice
     @invoice = Invoice.find(params[:id])
