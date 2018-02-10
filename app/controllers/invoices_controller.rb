@@ -42,6 +42,11 @@ class InvoicesController < ApplicationController
     redirect_to invoices_path
   end
 
+  def import
+    Invoice.import(params[:file])
+    redirect_to root_url, notice: "Invoices imported!"
+  end
+  
   private
   def invoice_params
     params.require(:invoice).permit(:item,:details,:price)

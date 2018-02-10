@@ -60,3 +60,8 @@ gem 'slim-rails'
 gem 'simple_form'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
+
+# file uploader
+gem "roo"
+gem 'iconv'
+# gem 'rails-pry'

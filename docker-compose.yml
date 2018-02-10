@@ -18,6 +18,8 @@ services:
       - db
     env_file:
       - .env
+    tty: true
+    stdin_open: true
 
   nginx:
     image: nginx:alpine
